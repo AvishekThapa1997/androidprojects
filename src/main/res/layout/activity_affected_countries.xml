@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white"
+    tools:context=".AffectedCountries">
+
+    <EditText
+        android:id="@+id/edtSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/edittext_gradient"
+        android:drawableStart="@drawable/ic_search_black_24dp"
+        android:drawableLeft="@drawable/ic_search_black_24dp"
+        android:drawablePadding="15dp"
+        android:hint="Search"
+        android:maxLines="1"
+        android:padding="15dp"
+        android:textSize="25sp"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtSearch"
+        android:layout_alignStart="@id/edtSearch"
+        android:layout_alignLeft="@id/edtSearch"
+        android:layout_alignEnd="@id/edtSearch"
+        android:layout_alignRight="@id/edtSearch"
+        android:layout_marginTop="20dp"
+        android:id="@+id/recycler_view"/>
+
+    <com.leo.simplearcloader.SimpleArcLoader
+        android:id="@+id/loader"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        app:arc_style="simple_arc"
+        android:visibility="visible"/>
+
+</RelativeLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/country_gradient"
+    android:padding="16dp"
+    android:layout_margin="10dp"
+    tools:context=".AffectedCountries">
+    <ImageView
+        android:id="@+id/countryImage"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
+        android:src="@drawable/ic_launcher_background"/>
+    <TextView
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="COUNTRY NAME"
+        android:layout_toEndOf="@id/countryImage"
+        android:layout_toRightOf="@id/countryImage"
+        android:textColor="@color/color_one"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-light"
+        android:textSize="25sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/countryName"/>
+</RelativeLayout>

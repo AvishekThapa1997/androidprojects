@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.leo.simplearcloader.SimpleArcLoader
+        android:id="@+id/loader"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:visibility="visible"
+        app:arc_style="simple_arc"
+        android:layout_centerHorizontal="true"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        android:visibility="visible"
+        android:id="@+id/card_view">
+
+        <RelativeLayout
+            android:id="@+id/relative_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_white"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/countryImage"
+                android:layout_width="84dp"
+                android:layout_height="84dp"
+                android:scaleType="center"
+                android:src="@drawable/ic_launcher_background" />
+
+            <TextView
+                android:id="@+id/countryName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="50dp"
+                android:layout_toEndOf="@id/countryImage"
+                android:layout_toRightOf="@id/countryImage"
+                android:text="COUNTRY NAME"
+                android:textColor="@color/color_one"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/countryName"
+                android:layout_alignStart="@id/countryName"
+                android:layout_alignLeft="@id/countryName"
+                android:fontFamily="sans-serif-light"
+                android:text="CASES"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textview_cases"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/countryName"
+                android:layout_alignEnd="@id/countryName"
+                android:layout_alignRight="@id/countryName"
+                android:fontFamily="sans-serif-light"
+                android:text="0"
+                android:textColor="@color/color_one"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textview_cases"
+                android:layout_alignStart="@id/countryName"
+                android:layout_alignLeft="@id/countryName"
+                android:fontFamily="sans-serif-light"
+                android:text="TODAY CASES"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textview_today_cases"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/textview_cases"
+                android:layout_alignEnd="@id/countryName"
+                android:layout_alignRight="@id/countryName"
+                android:fontFamily="sans-serif-light"
+                android:text="0"
+                android:textColor="@color/color_one"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textview_today_cases"
+                android:layout_alignStart="@id/countryName"
+                android:layout_alignLeft="@id/countryName"
+                android:fontFamily="sans-serif-light"
+                android:text="DEATHS"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textview_deaths"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textview_today_cases"
+                android:layout_alignEnd="@id/countryName"
+                android:layout_alignRight="@id/countryName"
+                android:fontFamily="sans-serif-light"
+                android:text="0"
+                android:textColor="@color/color_one"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textview_deaths"
+                android:layout_alignStart="@id/countryName"
+                android:layout_alignLeft="@id/countryName"
+                android:fontFamily="sans-serif-light"
+                android:text="TODAY DEATHS"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textview_today_deaths"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textview_deaths"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignEnd="@id/countryName"
+                android:layout_alignRight="@id/countryName"
+                android:fontFamily="sans-serif-light"
+                android:text="0"
+                android:textColor="@color/color_one"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textview_today_deaths"
+                android:layout_alignStart="@id/countryName"
+                android:layout_alignLeft="@id/countryName"
+                android:fontFamily="sans-serif-light"
+                android:text="RECOVERED"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textview_recoverd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textview_today_deaths"
+                android:layout_alignEnd="@id/countryName"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignRight="@id/countryName"
+                android:fontFamily="sans-serif-light"
+                android:text="0"
+                android:textColor="@color/color_one"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textview_recoverd"
+                android:layout_alignStart="@id/countryName"
+                android:layout_alignLeft="@id/countryName"
+                android:fontFamily="sans-serif-light"
+                android:text="ACTIVE"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textview_active"
+                android:layout_width="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textview_recoverd"
+                android:layout_alignEnd="@id/countryName"
+                android:layout_alignRight="@id/countryName"
+                android:fontFamily="sans-serif-light"
+                android:text="0"
+                android:textColor="@color/color_one"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textview_active"
+                android:layout_alignStart="@id/countryName"
+                android:layout_alignLeft="@id/countryName"
+                android:fontFamily="sans-serif-light"
+                android:text="CRITICAL"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textview_critical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textview_active"
+                android:layout_alignEnd="@id/countryName"
+                android:layout_alignRight="@id/countryName"
+                android:fontFamily="sans-serif-light"
+                android:text="0"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/color_one"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>
