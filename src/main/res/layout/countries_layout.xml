@@ -7,13 +7,21 @@
     android:padding="16dp"
     android:layout_margin="10dp"
     tools:context=".AffectedCountries">
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignTop="@id/countryImage"
+       />
+
     <ImageView
         android:id="@+id/countryImage"
         android:layout_width="84dp"
         android:layout_height="84dp"
-        android:src="@drawable/ic_launcher_background"/>
+        android:src="@drawable/ic_launcher_background"
+        android:visibility="gone"/>
     <TextView
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="COUNTRY NAME"
@@ -25,5 +33,183 @@
         android:textSize="25sp"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/countryName"/>
+    <RelativeLayout
+        android:id="@+id/relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_white"
+        android:padding="16dp"
+        android:layout_below="@id/countryName"
+        android:layout_marginTop="30dp"
+        android:visibility="gone">
+
+        <!--            <ImageView-->
+        <!--                android:id="@+id/countryImage"-->
+        <!--                android:layout_width="84dp"-->
+        <!--                android:layout_height="84dp"-->
+        <!--                android:scaleType="center"-->
+        <!--                android:src="@drawable/ic_launcher_background" />-->
+
+
+
+        <TextView
+            android:id="@+id/cases"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:text="CASES"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textview_cases"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:text="0"
+            android:textColor="@color/color_one"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textview_cases"
+            android:layout_alignStart="@id/cases"
+            android:layout_alignLeft="@id/cases"
+            android:fontFamily="sans-serif-light"
+            android:text="TODAY CASES"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textview_today_cases"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/textview_cases"
+            android:layout_alignEnd="@id/textview_cases"
+            android:layout_alignRight="@id/textview_cases"
+            android:fontFamily="sans-serif-light"
+            android:text="0"
+            android:textColor="@color/color_one"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textview_today_cases"
+            android:fontFamily="sans-serif-light"
+            android:text="DEATHS"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textview_deaths"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textview_today_cases"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:fontFamily="sans-serif-light"
+            android:text="0"
+            android:textColor="@color/color_one"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textview_deaths"
+            android:fontFamily="sans-serif-light"
+            android:text="TODAY DEATHS"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textview_today_deaths"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textview_deaths"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="sans-serif-light"
+            android:text="0"
+            android:textColor="@color/color_one"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textview_today_deaths"
+            android:fontFamily="sans-serif-light"
+            android:text="RECOVERED"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textview_recoverd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textview_today_deaths"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="sans-serif-light"
+            android:text="0"
+            android:textColor="@color/color_one"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textview_recoverd"
+            android:fontFamily="sans-serif-light"
+            android:text="ACTIVE"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textview_active"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textview_recoverd"
+            android:fontFamily="sans-serif-light"
+            android:text="0"
+            android:textColor="@color/color_one"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textview_active"
+            android:fontFamily="sans-serif-light"
+            android:text="CRITICAL"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textview_critical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textview_active"
+            android:fontFamily="sans-serif-light"
+            android:text="0"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/color_one"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 </RelativeLayout>

@@ -19,7 +19,6 @@ import com.leo.simplearcloader.SimpleArcLoader;
 public class CountryStatus extends AppCompatActivity {
 
     private SimpleArcLoader simpleArcLoader;
-    private ImageView countryImage;
     private TextView countryName;
     private TextView cases;
     private TextView todayCases;
@@ -50,7 +49,6 @@ public class CountryStatus extends AppCompatActivity {
     }
 
     private void setData(CountryModal countryModal) {
-        countryImage.setImageBitmap(countryModal.getCountryImage());
         countryName.setText(countryModal.getCountryName());
         cases.setText(countryModal.getCases());
         todayCases.setText(countryModal.getTodayCases());
@@ -65,7 +63,6 @@ public class CountryStatus extends AppCompatActivity {
 
     private void initiViews(){
         simpleArcLoader=findViewById(R.id.loader);
-        countryImage=findViewById(R.id.countryImage);
         countryName=findViewById(R.id.countryName);
         cases=findViewById(R.id.textview_cases);
         todayCases=findViewById(R.id.textview_today_cases);

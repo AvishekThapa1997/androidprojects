@@ -85,7 +85,7 @@ public class AffectedCountries extends AppCompatActivity implements MyAdapter.Da
             List<CountryModal> countryModalList=new ArrayList<>();
             @Override
             public void run() {
-                for(int i=0;i<jsonArray.length();i++){
+                for(int i=0;i<10;i++){
                     try {
                         JSONObject jsonObject=jsonArray.getJSONObject(i);
                         String country=jsonObject.getString("country");
@@ -97,8 +97,7 @@ public class AffectedCountries extends AppCompatActivity implements MyAdapter.Da
                         String active=jsonObject.getString("active");
                         String critical=jsonObject.getString("critical");
                         String image_url=jsonObject.getJSONObject("countryInfo").getString("flag");
-                        Bitmap countryBitmapImage=getCountryImageFromUrl(image_url);
-                        CountryModal countryModal=new CountryModal(country,cases,todayCases,deaths,todayDeaths,recovered,critical,active,countryBitmapImage);
+                        CountryModal countryModal=new CountryModal(country,cases,todayCases,deaths,todayDeaths,recovered,critical,active,image_url);
                         countryModalList.add(countryModal);
                         countryModalHashMap.put(country,countryModal);
                     } catch (JSONException e) {
@@ -113,32 +112,9 @@ public class AffectedCountries extends AppCompatActivity implements MyAdapter.Da
             private void setDataForRecyclerView(String country,String cases, String todayCases, String deaths, String todayDeaths, String recovered, String active, String critical, Bitmap bitmap) {
 
             }
-            private Bitmap getCountryImageFromUrl(String image_url) {
-                Bitmap bitmap=null;
-                HttpURLConnection httpURLConnection=null;
-                InputStream inputStream=null;
-                try {
-                    URL url=new URL(image_url);
-                    httpURLConnection=(HttpURLConnection)url.openConnection();
-                    inputStream=httpURLConnection.getInputStream();
-                    bitmap= BitmapFactory.decodeStream(inputStream);
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }finally {
-                    if(httpURLConnection != null){
-                        httpURLConnection.disconnect();
-                    }if(inputStream != null){
-                        try {
-                            inputStream.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-                return  bitmap;
-            }
+//            private Bitmap getCountryImageFromUrl(String image_url) {
+//
+//            }
 
         });
         thread.start();

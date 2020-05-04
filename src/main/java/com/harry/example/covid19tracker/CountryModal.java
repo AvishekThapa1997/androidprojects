@@ -5,8 +5,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class CountryModal implements Parcelable {
-    private String countryName,cases,todayCases,deaths,todayDeaths,recovered,active,critical;
-    private Bitmap countryImage;
+    private String countryName,cases,todayCases,deaths,todayDeaths,recovered,active,critical,image_url;
+    //private Bitmap countryImage;
 
     public String getCountryName() {
         return countryName;
@@ -18,7 +18,7 @@ public class CountryModal implements Parcelable {
 
 
 
-    public CountryModal(String countryName,String cases, String todayCases, String deaths, String todayDeaths, String recovered, String critical, String active, Bitmap countryImage) {
+    public CountryModal(String countryName,String cases, String todayCases, String deaths, String todayDeaths, String recovered, String critical, String active,String image_url) {
         this.countryName=countryName;
         this.cases = cases;
         this.todayCases = todayCases;
@@ -27,7 +27,7 @@ public class CountryModal implements Parcelable {
         this.recovered = recovered;
         this.critical = critical;
         this.active = active;
-        this.countryImage = countryImage;
+        this.image_url = image_url;
     }
 
     public String getCases() {
@@ -86,12 +86,12 @@ public class CountryModal implements Parcelable {
         this.critical = critical;
     }
 
-    public Bitmap getCountryImage() {
-        return countryImage;
+    public String getImage_url() {
+        return image_url;
     }
 
-    public void setCountryImage(Bitmap countryImage) {
-        this.countryImage = countryImage;
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
     }
 
     @Override
@@ -109,7 +109,7 @@ public class CountryModal implements Parcelable {
         dest.writeString(this.recovered);
         dest.writeString(this.active);
         dest.writeString(this.critical);
-        dest.writeParcelable(this.countryImage, flags);
+        dest.writeString(this.image_url);
     }
 
     protected CountryModal(Parcel in) {
@@ -121,7 +121,7 @@ public class CountryModal implements Parcelable {
         this.recovered = in.readString();
         this.active = in.readString();
         this.critical = in.readString();
-        this.countryImage = in.readParcelable(Bitmap.class.getClassLoader());
+        this.image_url = in.readString();
     }
 
     public static final Creator<CountryModal> CREATOR = new Creator<CountryModal>() {

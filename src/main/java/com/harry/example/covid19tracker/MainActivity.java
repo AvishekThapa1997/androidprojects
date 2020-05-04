@@ -3,6 +3,7 @@ package com.harry.example.covid19tracker;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
             total_deaths=findViewById(R.id.textview_total_deaths);
             affected_countries=findViewById(R.id.textview_affected_countries);
         }
+        @SuppressLint("StaticFieldLeak")
         private class FetchData extends AsyncTask<String,Void,JSONObject>{
 
             private Context context;

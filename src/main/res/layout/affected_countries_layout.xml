@@ -28,12 +28,12 @@
             android:background="@color/color_white"
             android:padding="16dp">
 
-            <ImageView
-                android:id="@+id/countryImage"
-                android:layout_width="84dp"
-                android:layout_height="84dp"
-                android:scaleType="center"
-                android:src="@drawable/ic_launcher_background" />
+<!--            <ImageView-->
+<!--                android:id="@+id/countryImage"-->
+<!--                android:layout_width="84dp"-->
+<!--                android:layout_height="84dp"-->
+<!--                android:scaleType="center"-->
+<!--                android:src="@drawable/ic_launcher_background" />-->
 
             <TextView
                 android:id="@+id/countryName"
@@ -41,8 +41,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginLeft="50dp"
-                android:layout_toEndOf="@id/countryImage"
-                android:layout_toRightOf="@id/countryImage"
                 android:text="COUNTRY NAME"
                 android:textColor="@color/color_one"
                 android:textSize="22sp"
