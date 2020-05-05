@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -35,17 +36,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
     private DataFromRecyclerView dataFromRecyclerView;
     private HashMap<String,Bitmap> bitmapHashMap=new HashMap<>();
     private boolean isVisible;
-    private boolean dataBinded;
+    private EditText countrySearch;
 //    private CountryModal countryModal;
 //    public MyAdapter(Context context,CountryModal countryModal){
 //        this.context=context;
 //        this.countryModal=countryModal;
 //    }
-    public MyAdapter(Context context,List<CountryModal> countryModalList){
+    public MyAdapter(Context context,List<CountryModal> countryModalList,EditText countrySearch){
         this.context=context;
         this.countryModalList=countryModalList;
         this.copyCountryModalList=countryModalList;
         this.dataFromRecyclerView=(AffectedCountries)context;
+        this.countrySearch=countrySearch;
     }
     @NonNull
     @Override
@@ -66,32 +68,35 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
                 holder.countryImage.setImageBitmap(bitmap);
                 holder.progressBar.setVisibility(View.GONE);
                 holder.countryImage.setVisibility(View.VISIBLE);
+                Log.i("TAG", "onBindViewHolder: "+"CACHE IMAGE");
             }
             else if(bitmapHashMap.containsKey(country_name)){
                 holder.countryImage.setImageBitmap(bitmapHashMap.get(country_name));
                 holder.progressBar.setVisibility(View.GONE);
                 holder.countryImage.setVisibility(View.VISIBLE);
+                Log.i("TAG", "onBindViewHolder: "+"MAP IMAGE");
             }else {
-                ImageDownloader imageDownloader = new ImageDownloader(holder.countryImage, holder.progressBar, country_name);
-                imageDownloader.execute(image_url);
+                ImageDownloader imageDownloader = new ImageDownloader(holder.countryImage, holder.progressBar, country_name,countrySearch);
+                imageDownloader.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,image_url);
+                Log.i("TAG", "onBindViewHolder: "+"DOWNLOAD IMAGE");
             }
             holder.view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(isVisible){
-                        RelativeLayout relativeLayout=holder.view.findViewById(R.id.relative_layout);
-                        relativeLayout.setVisibility(View.GONE);
-                        isVisible=false;
-                        return;
-                    }
+                        if(holder.relativeLayout != null && holder.relativeLayout.isShown()) {
+                            holder.relativeLayout.setVisibility(View.GONE);
+                            isVisible = false;
+                            return;
+                        }
                         dataFromRecyclerView.dataFromRecycler(country_name);
                 }
             });
             holder.view.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v){
-                    RelativeLayout relativeLayout=holder.view.findViewById(R.id.relative_layout);
-                    if(!isVisible) {
+                    RelativeLayout relativeLayout=holder.relativeLayout;
+                    if(!relativeLayout.isShown()) {
+                        Log.i("TAG", "onLongClick: ");
                             TextView cases = relativeLayout.findViewById(R.id.textview_cases);
                             TextView todayCases = relativeLayout.findViewById(R.id.textview_today_cases);
                             TextView deaths = relativeLayout.findViewById(R.id.textview_deaths);
@@ -108,6 +113,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
                             critical.setText(countryModal.getCritical());
                         relativeLayout.setVisibility(View.VISIBLE);
                         isVisible = true;
+                    }else{
+                        relativeLayout.setVisibility(View.GONE);
                     }
                     return true;
                 }
@@ -155,12 +162,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
         public ImageView countryImage;
         public TextView countryName;
         public ProgressBar progressBar;
+        public RelativeLayout relativeLayout;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             this.view=itemView;
             countryImage=itemView.findViewById(R.id.countryImage);
             countryName=itemView.findViewById(R.id.countryName);
             progressBar=itemView.findViewById(R.id.progress_bar);
+            relativeLayout=itemView.findViewById(R.id.relative_layout);
 
         }
     }
@@ -168,10 +177,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
         private ImageView imageView;
         private ProgressBar progressBar;
         private String country_name;
-        private ImageDownloader(ImageView imageView,ProgressBar progressBar,String country_name){
+        private EditText countrySearch;
+        private ImageDownloader(ImageView imageView,ProgressBar progressBar,String country_name,EditText countrySearch){
             this.imageView=imageView;
             this.progressBar=progressBar;
             this.country_name=country_name;
+            this.countrySearch=countrySearch;
         }
 
         @Override
@@ -218,6 +229,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
             CacheImage.putImage(context,country_name,bitmap);
             progressBar=null;
             imageView=null;
+            Log.i("TAG", "onPostExecute: "+country_name+" image downloaded");
+            if(bitmapHashMap.size() == copyCountryModalList.size()){
+                countrySearch.setEnabled(true);
+            }
         }
     }
     public interface DataFromRecyclerView{

@@ -63,6 +63,7 @@ public class AffectedCountries extends AppCompatActivity implements MyAdapter.Da
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_affected_countries);
+        Log.i("TAG", "onCreate: ");
         getSupportActionBar().setTitle("Affected Countries");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         context=this;
@@ -85,7 +86,7 @@ public class AffectedCountries extends AppCompatActivity implements MyAdapter.Da
             List<CountryModal> countryModalList=new ArrayList<>();
             @Override
             public void run() {
-                for(int i=0;i<10;i++){
+                for(int i=0;i<100;i++){
                     try {
                         JSONObject jsonObject=jsonArray.getJSONObject(i);
                         String country=jsonObject.getString("country");
@@ -125,12 +126,12 @@ public class AffectedCountries extends AppCompatActivity implements MyAdapter.Da
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                myAdapter=new MyAdapter(context,countryModalList);
+                myAdapter=new MyAdapter(context,countryModalList,countrySearch);
                 LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getApplicationContext());
                 recyclerView.setLayoutManager(linearLayoutManager);
                 recyclerView.setAdapter(myAdapter);
+                Log.i("TAG", "run: "+"setData");
                 hideArcLoader();
-                countrySearch.setEnabled(true);
             }
         });
     }

@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         initViews();
         fetchData();
-        Log.i("TAG", "onStart: ");
     }
 
     private void fetchData() {
@@ -96,7 +95,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             protected JSONObject doInBackground(String... content_urls) {
-                Log.i("TAG", "doInBackground: ");
                 RequestQueue requestQueue= Volley.newRequestQueue(context);
                 final JSONObject[] jsonObject = new JSONObject[1];
                 JsonObjectRequest  jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, content_urls[0], null,new Response.Listener<JSONObject>() {
@@ -104,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         jsonObject[0] =response;
-                        Log.i("TAG", "onPostExecute: "+String.valueOf(jsonObject == null));
                     }
                 }, new Response.ErrorListener() {
                     @Override
