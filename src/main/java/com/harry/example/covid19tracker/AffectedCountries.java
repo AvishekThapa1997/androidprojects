@@ -63,7 +63,6 @@ public class AffectedCountries extends AppCompatActivity implements MyAdapter.Da
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_affected_countries);
-        Log.i("TAG", "onCreate: ");
         getSupportActionBar().setTitle("Affected Countries");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         context=this;
@@ -173,7 +172,6 @@ public class AffectedCountries extends AppCompatActivity implements MyAdapter.Da
         });
     }
     private void fetchData(){
-        Log.i("TAG", "fetchData: ");
         String url="https://corona.lmao.ninja/v2/countries";
         Intent intent=new Intent(getApplicationContext(),MyService.class);
         intent.putExtra("url",url);

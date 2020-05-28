@@ -68,17 +68,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
                 holder.countryImage.setImageBitmap(bitmap);
                 holder.progressBar.setVisibility(View.GONE);
                 holder.countryImage.setVisibility(View.VISIBLE);
-                Log.i("TAG", "onBindViewHolder: "+"CACHE IMAGE");
             }
             else if(bitmapHashMap.containsKey(country_name)){
                 holder.countryImage.setImageBitmap(bitmapHashMap.get(country_name));
                 holder.progressBar.setVisibility(View.GONE);
                 holder.countryImage.setVisibility(View.VISIBLE);
-                Log.i("TAG", "onBindViewHolder: "+"MAP IMAGE");
             }else {
                 ImageDownloader imageDownloader = new ImageDownloader(holder.countryImage, holder.progressBar, country_name,countrySearch);
                 imageDownloader.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,image_url);
-                Log.i("TAG", "onBindViewHolder: "+"DOWNLOAD IMAGE");
             }
             holder.view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -187,7 +184,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
 
         @Override
         protected Bitmap doInBackground(String... strings) {
-            Log.i("TAG", "doInBackground: "+(count++));
             Bitmap bitmap=null;
             HttpURLConnection httpURLConnection=null;
             InputStream inputStream=null;
@@ -229,7 +225,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
             CacheImage.putImage(context,country_name,bitmap);
             progressBar=null;
             imageView=null;
-            Log.i("TAG", "onPostExecute: "+country_name+" image downloaded");
             if(bitmapHashMap.size() == copyCountryModalList.size()){
                 countrySearch.setEnabled(true);
             }
